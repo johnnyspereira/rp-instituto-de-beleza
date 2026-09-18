@@ -53,17 +53,17 @@ type GoogleConnection = {
 const DEFAULTS: Omit<PublicSiteSettings, 'account_id'> = {
   slug: '',
   enabled: false,
-  site_theme: 'wellness',
-  primary_color: '#2563eb',
-  accent_color: '#0f172a',
-  hero_badge: 'Bem-vindo',
-  hero_title: 'Cuidado, qualidade e confiança',
+  site_theme: 'spa',
+  primary_color: '#b06f78',
+  accent_color: '#2d2024',
+  hero_badge: 'A sua beleza, com técnica e intenção',
+  hero_title: 'Realçamos aquilo que já é seu.',
   hero_subtitle:
-    'Conheça os nossos serviços e descubra uma experiência pensada para você.',
-  hero_image_url: null,
-  about_title: 'Sobre nós',
+    'Unhas, pestanas, sobrancelhas e estética avançada num espaço onde cada detalhe é pensado para si.',
+  hero_image_url: '/rp/hero-beauty-studio-v1.webp',
+  about_title: 'Técnica, criatividade e cuidado.',
   about_text:
-    'Conte aqui quem é a sua empresa, o que faz e por que os clientes confiam no seu trabalho.',
+    'Na Quinta do Conde, criámos um espaço próximo e profissional para cuidar da sua imagem com tempo, escuta e atenção ao detalhe.',
   history_text: null,
   mission_text: null,
   contact_email: null,
@@ -71,7 +71,7 @@ const DEFAULTS: Omit<PublicSiteSettings, 'account_id'> = {
   whatsapp_phone: null,
   address: null,
   opening_hours: null,
-  instagram_url: null,
+  instagram_url: 'https://www.instagram.com/rpinstitutodebeleza/',
   facebook_url: null,
   linkedin_url: null,
   show_services: true,
@@ -81,7 +81,7 @@ const DEFAULTS: Omit<PublicSiteSettings, 'account_id'> = {
   show_testimonials: true,
   google_reviews_enabled: false,
   google_place_id: null,
-  google_review_url: null,
+  google_review_url: 'https://www.google.com/maps/place/RP+Instituto+de+beleza/@38.5533876,-9.0543043,18z',
   show_faq: true,
   show_booking: true,
   plans: [],
@@ -142,7 +142,9 @@ export function WebsiteBuilder() {
         setForm({
           ...DEFAULTS,
           slug: `${slugify(account?.name || 'empresa')}-${accountId.replaceAll('-', '').slice(0, 6)}`,
-          hero_title: `Bem-vindo à ${account?.name || 'nossa empresa'}`,
+          hero_title: account?.name === 'RP Instituto de Beleza'
+            ? DEFAULTS.hero_title
+            : `Bem-vindo à ${account?.name || 'nossa empresa'}`,
         });
       if (!leadResult.error) setLeads((leadResult.data ?? []) as Lead[]);
       setLoading(false);

@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const slug = await getDefaultPublicBusinessSlug();
   const site = slug ? await getPublicBusinessSite(slug) : null;
   const name = site?.account.name || 'RP Instituto de Beleza';
-  const description = site?.settings.hero_subtitle || 'Massagens e experiências de bem-estar por marcação.';
+  const description = site?.settings.hero_subtitle || 'Beleza, estética avançada, unhas e pestanas na Quinta do Conde.';
   return {
     title: name,
     description,

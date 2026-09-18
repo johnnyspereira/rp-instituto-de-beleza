@@ -4,14 +4,20 @@ import {
   ArrowDownRight,
   ArrowUpRight,
   CalendarDays,
+  Camera,
   ChevronRight,
   Clock3,
+  Eye,
+  GraduationCap,
   MapPin,
   Menu,
   Phone,
   Quote,
   Sparkles,
+  Star,
   UsersRound,
+  WandSparkles,
+  Zap,
 } from 'lucide-react';
 import { PublicLeadForm } from '@/components/website/public-lead-form';
 import { serviceSlug } from '@/lib/public-site/service-slug';
@@ -20,7 +26,16 @@ import styles from './rp-public-site.module.css';
 
 type Site = NonNullable<Awaited<ReturnType<typeof getPublicBusinessSite>>>;
 
-const fallbackHero = '/site-presets/wellness/hero-01.webp';
+const fallbackHero = '/rp/hero-beauty-studio-v1.webp';
+const instagramUrl = 'https://www.instagram.com/rpinstitutodebeleza/';
+const mapsUrl = 'https://www.google.com/maps/place/RP+Instituto+de+beleza/@38.5533876,-9.0543043,18z';
+
+const beautyUniverses = [
+  { icon: WandSparkles, number: '01', title: 'Unhas com identidade', description: 'Gel, acrílico, gelinho e nail art pensados ao detalhe para um resultado elegante e duradouro.', tags: ['Gel & acrílico', 'Gelinho', 'Nail art'] },
+  { icon: Eye, number: '02', title: 'Olhar em destaque', description: 'Design de sobrancelhas, threading, lifting e extensão de pestanas para realçar a sua expressão.', tags: ['Threading', 'Lifting', 'Extensões'] },
+  { icon: Zap, number: '03', title: 'Tecnologia estética', description: 'Soluções de estética e laser díodo com avaliação personalizada e acompanhamento próximo.', tags: ['Laser díodo', 'Hyaluron Pen', 'Estética'] },
+  { icon: GraduationCap, number: '04', title: 'Formação profissional', description: 'Modelos práticos e formação para quem quer aperfeiçoar técnica, confiança e resultados.', tags: ['Formações', 'Modelos', 'Prática'] },
+] as const;
 
 export function RpPublicSite({ site }: { site: Site }) {
   const { account, settings, services, team, portal } = site;
@@ -47,13 +62,14 @@ export function RpPublicSite({ site }: { site: Site }) {
           {account.logo_url ? (
             <img src={account.logo_url} alt="" />
           ) : (
-            <span>JP</span>
+            <span>RP</span>
           )}
           <b>{account.name}</b>
         </Link>
         <nav className={styles.nav} aria-label="Navegação principal">
-          <a href="#rituais">Rituais</a>
-          <a href="#casa">A casa</a>
+          <a href="#especialidades">Especialidades</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#academia">Formação</a>
           <a href="#profissionais">Profissionais</a>
           <a href="#contacto">Contacto</a>
         </nav>
@@ -70,35 +86,45 @@ export function RpPublicSite({ site }: { site: Site }) {
             <img src={settings.hero_image_url || fallbackHero} alt="Espaço de tratamento RP Instituto de Beleza" />
           </div>
           <div className={styles.heroCopy}>
-            <p className={styles.kicker}><Sparkles /> {settings.hero_badge || 'Tempo para si'}</p>
-            <h1>{settings.hero_title || 'Volte a sentir-se bem no seu corpo.'}</h1>
+            <p className={styles.kicker}><Sparkles /> {settings.hero_badge || 'A sua beleza, com técnica e intenção'}</p>
+            <h1>{settings.hero_title || 'Realçamos aquilo que já é seu.'}</h1>
             <p className={styles.heroText}>
-              {settings.hero_subtitle || 'Tratamentos pensados para abrandar, respirar e recuperar o seu equilíbrio.'}
+              {settings.hero_subtitle || 'Unhas, pestanas, sobrancelhas e estética avançada num espaço onde cada detalhe é pensado para si.'}
             </p>
             <div className={styles.heroButtons}>
-              <Link href={bookingHref} className={styles.primaryButton}>Marcar a minha sessão <ArrowUpRight /></Link>
-              <a href="#rituais" className={styles.textButton}>Descobrir rituais <ArrowDownRight /></a>
+              <Link href={bookingHref} className={styles.primaryButton}>Quero marcar <ArrowUpRight /></Link>
+              <a href="#especialidades" className={styles.textButton}>Explorar tratamentos <ArrowDownRight /></a>
             </div>
             <dl className={styles.heroFacts}>
-              <div><dt>Atendimento</dt><dd>com presença</dd></div>
-              <div><dt>Rituais</dt><dd>personalizados</dd></div>
-              <div><dt>Ambiente</dt><dd>sereno e privado</dd></div>
+              <div><dt>Atendimento</dt><dd>personalizado</dd></div>
+              <div><dt>Técnica</dt><dd>em evolução</dd></div>
+              <div><dt>Localização</dt><dd>Quinta do Conde</dd></div>
             </dl>
           </div>
         </section>
 
         <section className={styles.statement}>
           <span>RP Instituto de Beleza</span>
-          <p>O cuidado não deve ser mais uma tarefa. Deve ser o lugar onde volta a si.</p>
-          <a href="#casa" aria-label="Conhecer a nossa casa"><ArrowDownRight /></a>
+          <p>Beleza é sentir-se confiante, cuidada e fiel à sua própria expressão.</p>
+          <a href="#especialidades" aria-label="Conhecer as especialidades"><ArrowDownRight /></a>
+        </section>
+
+        <section id="especialidades" className={styles.universes}>
+          <div className={styles.universeHeading}>
+            <div><p className={styles.eyebrow}>Tudo começa consigo</p><h2>Escolha como quer sentir-se.</h2></div>
+            <p>Tratamentos especializados, ideias atuais e um acompanhamento próximo para criar um resultado que combina consigo.</p>
+          </div>
+          <div className={styles.universeGrid}>
+            {beautyUniverses.map((item) => { const Icon = item.icon; return <article key={item.number} className={styles.universeCard}><div className={styles.universeTop}><span>{item.number}</span><Icon /></div><h3>{item.title}</h3><p>{item.description}</p><div className={styles.tags}>{item.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></article>; })}
+          </div>
         </section>
 
         {settings.show_services && visibleServices.length > 0 && (
-          <section id="rituais" className={styles.rituals}>
+          <section id="servicos" className={styles.rituals}>
             <div className={styles.sectionIntro}>
-              <p className={styles.eyebrow}>Rituais</p>
-              <h2>Escolha o que o seu momento pede.</h2>
-              <p>Conheça cada experiência, o seu ritmo e o cuidado que recebe em cada sessão.</p>
+              <p className={styles.eyebrow}>Menu de beleza</p>
+              <h2>Serviços feitos à sua medida.</h2>
+              <p>Consulte duração, valor e detalhes de cada serviço e faça a sua marcação online.</p>
             </div>
             <div className={styles.serviceList}>
               {visibleServices.slice(0, 8).map((service, index) => (
@@ -106,7 +132,7 @@ export function RpPublicSite({ site }: { site: Site }) {
                   <span className={styles.serviceIndex}>{String(index + 1).padStart(2, '0')}</span>
                   <div className={styles.serviceMain}>
                     <h3>{service.name}</h3>
-                    <p>{service.public_presentation || service.description || 'Uma experiência de bem-estar preparada para si.'}</p>
+                    <p>{service.public_presentation || service.description || 'Um cuidado de beleza preparado e adaptado para si.'}</p>
                   </div>
                   <div className={styles.serviceMeta}>
                     <span><Clock3 /> {service.duration_minutes} min</span>
@@ -124,12 +150,18 @@ export function RpPublicSite({ site }: { site: Site }) {
             <img src={settings.hero_image_url || fallbackHero} alt="Detalhe do espaço RP Instituto de Beleza" />
           </div>
           <div className={styles.aboutCopy}>
-            <p className={styles.eyebrow}>A nossa casa</p>
-            <h2>{settings.about_title || 'Um espaço feito para abrandar.'}</h2>
-            <p>{settings.about_text || 'Criámos um lugar calmo, profissional e acolhedor, onde cada sessão é adaptada ao seu conforto.'}</p>
+            <p className={styles.eyebrow}>O Instituto RP</p>
+            <h2>{settings.about_title || 'Técnica, criatividade e cuidado.'}</h2>
+            <p>{settings.about_text || 'Na Quinta do Conde, criámos um espaço próximo e profissional para cuidar da sua imagem com tempo, escuta e atenção ao detalhe.'}</p>
             {settings.history_text && <p className={styles.history}>{settings.history_text}</p>}
             <Link href={bookingHref} className={styles.underlinedLink}>Encontrar o seu momento <ArrowUpRight /></Link>
           </div>
+        </section>
+
+        <section id="academia" className={styles.academy}>
+          <div className={styles.academyIcon}><GraduationCap /></div>
+          <div className={styles.academyCopy}><p className={styles.eyebrow}>RP Academy</p><h2>Aprender com prática. Crescer com confiança.</h2><p>Formações e oportunidades para modelos em técnicas de beleza. Uma abordagem próxima, atual e orientada para resultados reais.</p></div>
+          <div className={styles.academyActions}><a href="#contacto" className={styles.primaryButton}>Quero saber mais <ArrowUpRight /></a><span><Star /> Formação · modelos · aperfeiçoamento</span></div>
         </section>
 
         {settings.show_team && team.length > 0 && (
@@ -174,6 +206,8 @@ export function RpPublicSite({ site }: { site: Site }) {
             <div className={styles.contactDetails}>
               {settings.contact_phone && <span><Phone /> {settings.contact_phone}</span>}
               {settings.address && <span><MapPin /> {settings.address}</span>}
+              <a href={mapsUrl} target="_blank" rel="noreferrer"><MapPin /> Ver no Google Maps</a>
+              <a href={settings.instagram_url || instagramUrl} target="_blank" rel="noreferrer"><Camera /> Seguir no Instagram</a>
             </div>
           </div>
           <PublicLeadForm slug={settings.slug} primaryColor={settings.primary_color} />
@@ -182,7 +216,7 @@ export function RpPublicSite({ site }: { site: Site }) {
 
       <footer className={styles.footer}>
         <b>{account.name}</b>
-        <span>© {new Date().getFullYear()} — cuidado, presença e bem-estar.</span>
+        <span>© {new Date().getFullYear()} — beleza, técnica e confiança.</span>
         <Link href="/portal">Portal do cliente</Link>
       </footer>
     </div>
