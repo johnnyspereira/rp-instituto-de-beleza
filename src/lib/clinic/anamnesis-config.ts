@@ -42,334 +42,65 @@ const long = (
   required,
 });
 
-const bodyMap = (
-  id: string,
-  label: string,
-  required = false
-): AnamnesisQuestion => ({
-  id,
-  label,
-  type: 'body_map',
-  required,
-});
-
 export const DEFAULT_ANAMNESIS_CONFIG: AnamnesisFormConfig = {
   modalities: [
-    {
-      id: 'tantric_sensitive',
-      label: 'Massagem Tântrica/Sensitiva',
-      enabled: true,
-      aliases: ['tântrica/sensitiva', 'tantrica/sensitiva'],
-      questions: [
-        yesNo(
-          'tantric_sensitive_first',
-          'É a sua primeira experiência nesta modalidade?',
-          true
-        ),
-        long(
-          'tantric_sensitive_boundaries',
-          'Indique limites, zonas que não autoriza tocar e preferências de conforto.',
-          true
-        ),
-        yesNo(
-          'tantric_sensitive_skin',
-          'Possui irritação, infeção, lesão cutânea ou sensibilidade a óleos?'
-        ),
-      ],
-    },
-    {
-      id: 'relaxing',
-      label: 'Massagem Relaxante',
-      enabled: true,
-      aliases: ['relaxante'],
-      questions: [
-        bodyMap(
-          'relaxing_avoid',
-          'Existem zonas dolorosas, sensíveis ou que devem ser evitadas?'
-        ),
-        yesNo(
-          'relaxing_oils',
-          'Possui alergia ou sensibilidade a óleos, cremes ou fragrâncias?'
-        ),
-      ],
-    },
-    {
-      id: 'therapeutic',
-      label: 'Massagem Terapêutica',
-      enabled: true,
-      aliases: ['terapêutica', 'terapeutica'],
-      questions: [
-        long(
-          'therapeutic_pain',
-          'Localize a dor, indique a intensidade de 0 a 10 e há quanto tempo começou.',
-          true
-        ),
-        long(
-          'therapeutic_diagnosis',
-          'Possui diagnóstico, exames, cirurgia recente ou recomendação médica?'
-        ),
-        long(
-          'therapeutic_mobility',
-          'Que movimentos ou atividades estão limitados?'
-        ),
-      ],
-    },
-    {
-      id: 'sports',
-      label: 'Massagem Desportiva',
-      enabled: true,
-      aliases: ['desportiva'],
-      questions: [
-        long(
-          'sports_activity',
-          'Qual desporto pratica, com que frequência e qual o objetivo da sessão?',
-          true
-        ),
-        long(
-          'sports_injury',
-          'Possui lesão atual, dor aguda, edema ou está em recuperação?'
-        ),
-        yesNo(
-          'sports_event',
-          'Tem treino ou competição nas próximas 48 horas?'
-        ),
-      ],
-    },
-    {
-      id: 'hot_stones',
-      label: 'Massagem Pedras Quentes',
-      enabled: true,
-      aliases: ['pedras quentes'],
-      questions: [
-        yesNo(
-          'stones_heat',
-          'Possui sensibilidade reduzida ou intolerância ao calor?',
-          true
-        ),
-        yesNo(
-          'stones_circulation',
-          'Possui diabetes, varizes, trombose ou problemas circulatórios?'
-        ),
-        long(
-          'stones_skin',
-          'Indique inflamações, lesões cutâneas ou zonas onde não deve ser aplicado calor.'
-        ),
-      ],
-    },
-    {
-      id: 'hot_candles',
-      label: 'Massagem Velas Quentes',
-      enabled: true,
-      aliases: ['velas quentes'],
-      questions: [
-        yesNo(
-          'candles_allergy',
-          'Possui alergia a cosméticos, fragrâncias, ceras ou óleos?',
-          true
-        ),
-        yesNo(
-          'candles_heat',
-          'Possui sensibilidade reduzida ou intolerância ao calor?'
-        ),
-        long(
-          'candles_skin',
-          'Indique dermatites, feridas, irritações ou tratamentos de pele recentes.'
-        ),
-      ],
-    },
-    {
-      id: 'cupping',
-      label: 'Ventosaterapia',
-      enabled: true,
-      aliases: ['ventosaterapia', 'ventosa'],
-      questions: [
-        yesNo(
-          'cupping_anticoagulant',
-          'Utiliza anticoagulantes ou apresenta hematomas com facilidade?',
-          true
-        ),
-        yesNo(
-          'cupping_skin',
-          'Possui feridas, varizes salientes, infeções ou inflamação na zona a tratar?'
-        ),
-        yesNo(
-          'cupping_marks',
-          'Compreende e aceita que a técnica pode deixar marcas temporárias?',
-          true
-        ),
-      ],
-    },
-    {
-      id: 'reflexology',
-      label: 'Reflexologia Podal',
-      enabled: true,
-      aliases: ['reflexologia podal', 'reflexologia'],
-      questions: [
-        yesNo(
-          'reflexology_feet',
-          'Possui feridas, infeção, micose, fratura ou cirurgia recente nos pés?',
-          true
-        ),
-        yesNo(
-          'reflexology_neuropathy',
-          'Possui diabetes, neuropatia ou perda de sensibilidade nos pés?'
-        ),
-        yesNo(
-          'reflexology_pregnancy',
-          'Está grávida ou existe possibilidade de gravidez?'
-        ),
-      ],
-    },
-    {
-      id: 'myofascial',
-      label: 'Liberação Miofascial',
-      enabled: true,
-      aliases: ['liberação miofascial', 'liberacao miofascial', 'miofascial'],
-      questions: [
-        long(
-          'myofascial_restriction',
-          'Indique a zona de restrição, dor e movimentos limitados.',
-          true
-        ),
-        yesNo(
-          'myofascial_injury',
-          'Possui lesão aguda, fratura, cirurgia recente ou doença do tecido conjuntivo?'
-        ),
-        long(
-          'myofascial_treatment',
-          'Realiza fisioterapia ou outro acompanhamento para esta condição?'
-        ),
-      ],
-    },
-    {
-      id: 'tantric',
-      label: 'Massagem Tântrica',
-      enabled: true,
-      aliases: ['massagem tântrica', 'massagem tantrica'],
-      questions: [
-        yesNo(
-          'tantric_first',
-          'É a sua primeira experiência nesta modalidade?',
-          true
-        ),
-        long(
-          'tantric_boundaries',
-          'Indique claramente os seus limites, zonas excluídas e preferências.',
-          true
-        ),
-        yesNo(
-          'tantric_consent',
-          'Compreende que pode interromper ou ajustar a sessão a qualquer momento?',
-          true
-        ),
-      ],
-    },
-    {
-      id: 'sensitive',
-      label: 'Massagem Sensitiva',
-      enabled: true,
-      aliases: ['massagem sensitiva'],
-      questions: [
-        long(
-          'sensitive_boundaries',
-          'Indique limites de toque, zonas excluídas e sensibilidades.',
-          true
-        ),
-        long(
-          'sensitive_goal',
-          'O que procura nesta sessão e o que ajuda a sentir-se confortável?'
-        ),
-        yesNo(
-          'sensitive_oils',
-          'Possui alergia ou sensibilidade a óleos e fragrâncias?'
-        ),
-      ],
-    },
-    {
-      id: 'lomi_lomi',
-      label: 'Massagem Lomi-Lomi',
-      enabled: true,
-      aliases: ['lomi-lomi', 'lomi lomi'],
-      questions: [
-        yesNo(
-          'lomi_oils',
-          'Possui alergia ou sensibilidade a óleos e fragrâncias?'
-        ),
-        bodyMap(
-          'lomi_avoid',
-          'Existem zonas dolorosas, sensíveis ou que devem ser evitadas?'
-        ),
-        yesNo(
-          'lomi_mobility',
-          'Possui limitação de mobilidade, cirurgia ou lesão recente?'
-        ),
-      ],
-    },
-    {
-      id: 'nuru',
-      label: 'Massagem Nuru',
-      enabled: true,
-      aliases: ['massagem nuru', 'nuru'],
-      questions: [
-        yesNo(
-          'nuru_skin',
-          'Possui alergias, dermatite, feridas ou sensibilidade cutânea?',
-          true
-        ),
-        long(
-          'nuru_boundaries',
-          'Indique limites, zonas excluídas e qualquer adaptação necessária.',
-          true
-        ),
-        yesNo(
-          'nuru_consent',
-          'Compreende que pode interromper ou ajustar a sessão a qualquer momento?',
-          true
-        ),
-      ],
-    },
-    {
-      id: 'slimming',
-      label: 'Massagem Redutora de Medidas',
-      enabled: true,
-      aliases: ['redutora de medidas', 'redutora'],
-      questions: [
-        long(
-          'slimming_goal',
-          'Quais zonas pretende trabalhar e qual o seu objetivo?'
-        ),
-        yesNo(
-          'slimming_circulation',
-          'Possui varizes, trombose, fragilidade capilar ou problemas circulatórios?',
-          true
-        ),
-        yesNo(
-          'slimming_surgery',
-          'Fez cirurgia, procedimento estético ou teve parto recentemente?'
-        ),
-      ],
-    },
-    {
-      id: 'modeling',
-      label: 'Massagem Modeladora',
-      enabled: true,
-      aliases: ['modeladora'],
-      questions: [
-        long(
-          'modeling_goal',
-          'Quais zonas pretende trabalhar e qual o resultado esperado?'
-        ),
-        yesNo(
-          'modeling_circulation',
-          'Possui varizes, trombose, hematomas frequentes ou problemas circulatórios?',
-          true
-        ),
-        yesNo(
-          'modeling_skin',
-          'Possui inflamação, dor aguda, lesão de pele ou cirurgia recente?'
-        ),
-      ],
-    },
+    { id: "skin_cleansing", label: "Limpeza de pele", enabled: true, aliases: ["limpeza facial"], questions: [
+      long("skin_cleansing_goal", "Como descreve a sua pele e qual o objetivo da sessão?", true),
+      long("skin_cleansing_history", "Indique cosméticos, medicamentos e procedimentos de pele recentes.", true),
+      yesNo("skin_cleansing_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "diode_laser", label: "Depilação a laser díodo", enabled: true, aliases: ["laser díodo","laser diodo","depilação a laser diodo"], questions: [
+      long("diode_laser_goal", "Quais zonas pretende tratar e como remove atualmente os pelos?", true),
+      long("diode_laser_history", "Indique exposição solar, bronzeamento, tatuagens, medicamentos e procedimentos recentes.", true),
+      yesNo("diode_laser_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+      yesNo('laser_sun_recent', 'Teve exposição solar, bronzeamento ou queimaduras recentes?', true),
+      long('laser_medications', 'Indique todos os medicamentos e suplementos, incluindo tratamentos para acne.', true),
+    ] },
+    { id: "plaster_therapy", label: "Gessoterapia", enabled: true, aliases: ["gesso terapia"], questions: [
+      long("plaster_therapy_goal", "Quais zonas pretende trabalhar e qual o objetivo?", true),
+      long("plaster_therapy_history", "Indique problemas circulatórios, intervenções recentes e recomendações profissionais relevantes.", true),
+      yesNo("plaster_therapy_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "jet_bronze", label: "JetBronze", enabled: true, aliases: ["jet bronze","bronzeamento a jato"], questions: [
+      long("jet_bronze_goal", "Qual o resultado pretendido e a data prevista para o serviço?", true),
+      long("jet_bronze_history", "Indique reações anteriores a bronzeadores e procedimentos de pele recentes.", true),
+      yesNo("jet_bronze_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+      long('bronze_breathing', 'Indique asma, sensibilidade respiratória ou reações anteriores a aerossóis.'),
+    ] },
+    { id: "gel_nails", label: "Unhas de gel", enabled: true, aliases: ["gel"], questions: [
+      long("gel_nails_goal", "Já utiliza gel? Descreva o estado das unhas e o resultado pretendido.", true),
+      long("gel_nails_history", "Indique alergias a acrilatos, adesivos e produtos para unhas ou reações anteriores.", true),
+      yesNo("gel_nails_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "acrylic_nails", label: "Unhas de acrílico", enabled: true, aliases: ["acrílico","acrilico"], questions: [
+      long("acrylic_nails_goal", "Descreva aplicações anteriores, o estado das unhas e o resultado pretendido.", true),
+      long("acrylic_nails_history", "Indique alergias a acrilatos, adesivos e produtos para unhas ou reações anteriores.", true),
+      yesNo("acrylic_nails_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "gel_polish", label: "Gelinho", enabled: true, aliases: ["verniz gel"], questions: [
+      long("gel_polish_goal", "Descreva o estado atual das unhas e o resultado pretendido.", true),
+      long("gel_polish_history", "Indique alergias a produtos para unhas e reações anteriores.", true),
+      yesNo("gel_polish_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "lash_lift", label: "Lifting de pestanas com botox", enabled: true, aliases: ["lifting de pestanas","lash lifting"], questions: [
+      long("lash_lift_goal", "Já realizou lifting? Indique tratamentos oculares e reações anteriores.", true),
+      long("lash_lift_history", "Indique alergias a cosméticos, utilização de lentes de contacto ou desconforto ocular.", true),
+      yesNo("lash_lift_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "lash_extensions", label: "Extensão de pestanas 3D", enabled: true, aliases: ["extensão de pestanas","pestanas 3D"], questions: [
+      long("lash_extensions_goal", "Já utilizou extensões? Indique aplicações, remoções e reações anteriores.", true),
+      long("lash_extensions_history", "Indique alergias a adesivos, utilização de lentes de contacto ou desconforto ocular.", true),
+      yesNo("lash_extensions_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "threading", label: "Threading", enabled: true, aliases: ["depilação com linha"], questions: [
+      long("threading_goal", "Qual a zona a tratar e existem sensibilidades anteriores?", true),
+      long("threading_history", "Indique produtos, medicamentos e procedimentos recentes na zona a tratar.", true),
+      yesNo("threading_irritation", 'Existe dor, irritação, infeção, ferida ou sensibilidade na zona a tratar?', true),
+    ] },
+    { id: "training", label: "Formações/workshops", enabled: true, aliases: ["formações","workshops","formação profissional"], questions: [
+      long("training_goal", "Qual a formação pretendida e a sua experiência anterior?", true),
+      long("training_history", "Participa como formando ou modelo? Como modelo, indique o procedimento e preencha também a ficha desse serviço.", true),
+    ] },
   ],
   customQuestions: [],
 };
@@ -392,7 +123,8 @@ export function mergeAnamnesisConfig(
         !modality.aliases?.length &&
         !modality.questions?.length
     );
-  const storedModalities = isLegacyGroupedConfig ? [] : incomingModalities;
+  const jpIds = new Set(['tantric_sensitive', 'relaxing', 'therapeutic', 'sports', 'hot_stones', 'hot_candles', 'cupping', 'reflexology', 'myofascial', 'tantric', 'sensitive', 'lomi_lomi', 'nuru', 'slimming', 'lymphatic', 'lymphatic_drainage', 'drainage', 'sensory', 'modeling', 'heat', 'aesthetics']);
+  const storedModalities = isLegacyGroupedConfig ? [] : incomingModalities.filter((modality) => !jpIds.has(modality.id));
   const storedById = new Map(
     storedModalities.map((modality) => [modality.id, modality])
   );
@@ -424,7 +156,7 @@ export function mergeAnamnesisConfig(
       ...defaults,
       ...extraModalities,
     ],
-    customQuestions: (stored?.customQuestions || []).filter(
+    customQuestions: (incomingModalities.some((modality) => jpIds.has(modality.id)) ? [] : stored?.customQuestions || []).filter(
       (question) => !isPressureQuestion(question)
     ),
   };
