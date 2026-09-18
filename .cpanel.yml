@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - /bin/mkdir -p /home/jpmassag/repositories/rp-instituto-de-beleza/tmp
+    - /usr/bin/touch /home/jpmassag/repositories/rp-instituto-de-beleza/tmp/restart.txt

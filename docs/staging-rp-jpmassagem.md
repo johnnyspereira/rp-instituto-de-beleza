@@ -21,6 +21,9 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
 2. Disponibilizar o repositório privado em
    `/home/jpmassag/repositories/rp-instituto-de-beleza`. Se usar o Git Version
    Control do cPanel, configurar uma chave de deploy **só de leitura** no GitHub.
+   Em **Pull or Deploy**, clicar em **Update from Remote** e depois em **Deploy
+   HEAD Commit**. O `.cpanel.yml` incluído no projeto cria o sinal de reinício do
+   Passenger; a compilação é feita no passo 5, com o ambiente da aplicação.
 3. Em **Setup Node.js App**, criar uma aplicação em modo `Production`, com Node.js
    22, raiz `repositories/rp-instituto-de-beleza`, URL `rp.jpmassagem.pt` e
    startup file `server.cjs`.
