@@ -33,6 +33,7 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    ```dotenv
    NODE_ENV=production
    NPM_CONFIG_INCLUDE=dev
+   NPM_CONFIG_LEGACY_PEER_DEPS=true
    DB_HOST=localhost
    DB_PORT=3306
    DB_NAME=jpmassag_rp
@@ -51,7 +52,8 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    ```
 
 5. Sem acesso ao Terminal, abrir a aplicação em **Setup Node.js App**. Confirmar
-   primeiro que `NPM_CONFIG_INCLUDE=dev` está guardada nas variáveis e remover a
+   primeiro que `NPM_CONFIG_INCLUDE=dev` e
+   `NPM_CONFIG_LEGACY_PEER_DEPS=true` estão guardadas nas variáveis e remover a
    variável antiga `NPM_CONFIG_PRODUCTION`, se existir:
    - confirmar antes que `rp.jpmassagem.pt` já resolve no DNS e abre no browser;
    - clicar em **Run npm install** e esperar que termine sem erros;
