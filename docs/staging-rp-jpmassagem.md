@@ -29,11 +29,12 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
 
    ```dotenv
    NODE_ENV=production
+   NPM_CONFIG_PRODUCTION=false
    DB_HOST=localhost
    DB_PORT=3306
    DB_NAME=jpmassag_rp
    DB_USER=jpmassag_rp
-   DB_PASSWORD=<senha_nova>
+   DB_PASSWORD=Eed8(Z%y,v8EVdRy
    AUTH_SECRET=<64_caracteres_hex_aleatorios>
    ENCRYPTION_KEY=<64_caracteres_hex_aleatorios>
    AUTOMATION_CRON_SECRET=<segredo_novo>
@@ -46,10 +47,18 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    LOCAL_UPLOAD_DIR=/home/jpmassag/data/rp-instituto/uploads
    ```
 
-5. No Terminal do cPanel, dentro da raiz da aplicação, executar `npm ci --include=dev`,
-   `npm run db:migrate:mysql` e `npm run build:cpanel`, nessa ordem. Reiniciar a
-   aplicação no painel. Se o cPanel exigir o executável Node da aplicação,
-   usar o comando de ativação mostrado no próprio **Setup Node.js App**.
+5. Sem acesso ao Terminal, abrir a aplicação em **Setup Node.js App**. Confirmar
+   primeiro que `NPM_CONFIG_PRODUCTION=false` está guardada nas variáveis:
+   - clicar em **Run npm install** e esperar que termine sem erros;
+   - clicar em **Run JS Script**, escolher `deploy:cpanel` e executar;
+   - confirmar no resultado as mensagens `Applying MySQL migrations`,
+     `Building the Next.js application` e `completed successfully`;
+   - clicar em **Restart**.
+
+   O script `deploy:cpanel` executa as migrações e o build na ordem correta. Se
+   o painel não mostrar **Run JS Script**, usar **Git Version Control > Manage >
+   Pull or Deploy** com uma configuração `.cpanel.yml`, ou pedir à Domínios.pt
+   que habilite a execução de scripts Node.js para a conta.
 6. Configurar SMTP próprio do RP antes de testar convites e recuperação de senha.
    Deixar WhatsApp, pagamentos e envios automáticos desativados até existirem
    credenciais e números próprios do RP.

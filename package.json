@@ -31,6 +31,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:cpanel": "next build --webpack",
+    "deploy:cpanel": "node scripts/cpanel-deploy.mjs",
     "start": "next start",
     "start:cpanel": "node server.cjs",
     "postinstall": "node -e \"import(require('node:url').pathToFileURL(require('node:path').join(process.env.INIT_CWD||process.cwd(),'scripts/cpanel-postinstall.mjs')).href)\"",
