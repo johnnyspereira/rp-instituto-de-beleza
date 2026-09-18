@@ -30,10 +30,24 @@ const fallbackHero = '/rp/hero-beauty-studio-v1.webp';
 const instagramUrl = 'https://www.instagram.com/rpinstitutodebeleza/';
 const mapsUrl = 'https://www.google.com/maps/place/RP+Instituto+de+beleza/@38.5533876,-9.0543043,18z';
 
+const rpServices = [
+  ['Limpeza de pele', 'Cuidado facial personalizado, com avaliação da pele e atenção às suas necessidades.'],
+  ['Depilação a laser díodo', 'Depilação por zonas, com avaliação prévia e orientação sobre os cuidados antes e depois da sessão.'],
+  ['Gessoterapia', 'Cuidado estético corporal adaptado às zonas e aos objetivos definidos na avaliação.'],
+  ['JetBronze', 'Bronzeamento a jato para valorizar o tom da pele, com orientação para preparar e manter o resultado.'],
+  ['Unhas de gel', 'Construção e manutenção de unhas, com escolha de formato, cor e acabamento ao seu gosto.'],
+  ['Unhas de acrílico', 'Modelagem de unhas em acrílico, com atenção ao formato e à expressão do seu estilo.'],
+  ['Gelinho', 'Cor e acabamento em verniz gel para uma manicure cuidada e personalizada.'],
+  ['Lifting de pestanas com botox', 'Realce da curvatura das pestanas naturais com cuidado cosmético. Consulte os produtos utilizados na avaliação.'],
+  ['Extensão de pestanas 3D', 'Valorização do olhar com extensões e escolha de efeito, seguida de orientação sobre manutenção.'],
+  ['Threading', 'Depilação com linha para um acabamento preciso, com avaliação da zona e sensibilidade da pele.'],
+  ['Formações/workshops', 'Aprendizagem prática em técnicas de beleza. Consulte temas, datas e oportunidades de participação como modelo.'],
+] as const;
+
 const beautyUniverses = [
   { icon: WandSparkles, number: '01', title: 'Unhas com identidade', description: 'Gel, acrílico, gelinho e nail art pensados ao detalhe para um resultado elegante e duradouro.', tags: ['Gel & acrílico', 'Gelinho', 'Nail art'] },
   { icon: Eye, number: '02', title: 'Olhar em destaque', description: 'Design de sobrancelhas, threading, lifting e extensão de pestanas para realçar a sua expressão.', tags: ['Threading', 'Lifting', 'Extensões'] },
-  { icon: Zap, number: '03', title: 'Tecnologia estética', description: 'Soluções de estética e laser díodo com avaliação personalizada e acompanhamento próximo.', tags: ['Laser díodo', 'Hyaluron Pen', 'Estética'] },
+  { icon: Zap, number: '03', title: 'Tecnologia estética', description: 'Soluções de estética e laser díodo com avaliação personalizada e acompanhamento próximo.', tags: ['Laser díodo', 'Gessoterapia', 'JetBronze'] },
   { icon: GraduationCap, number: '04', title: 'Formação profissional', description: 'Modelos práticos e formação para quem quer aperfeiçoar técnica, confiança e resultados.', tags: ['Formações', 'Modelos', 'Prática'] },
 ] as const;
 
@@ -41,7 +55,19 @@ export function RpPublicSite({ site }: { site: Site }) {
   const { account, settings, services, team, portal } = site;
   const bookingHref =
     settings.show_booking && portal?.booking_enabled ? '/portal?book=1' : '#contacto';
-  const visibleServices = services.filter((service) => !service.coming_soon);
+  const visibleServices = rpServices.map(([name, description]) => {
+    const configured = services.find((service) =>
+      !service.coming_soon && serviceSlug(service.name) === serviceSlug(name)
+    );
+    return {
+      id: configured?.id || serviceSlug(name),
+      name,
+      description: configured?.public_presentation || configured?.description || description,
+      duration_minutes: configured?.duration_minutes,
+      price: configured?.price,
+      configured: Boolean(configured),
+    };
+  });
   const formatPrice = new Intl.NumberFormat('pt-PT', {
     style: 'currency',
     currency: account.default_currency || 'EUR',
@@ -124,21 +150,21 @@ export function RpPublicSite({ site }: { site: Site }) {
             <div className={styles.sectionIntro}>
               <p className={styles.eyebrow}>Menu de beleza</p>
               <h2>Serviços feitos à sua medida.</h2>
-              <p>Consulte duração, valor e detalhes de cada serviço e faça a sua marcação online.</p>
+              <p>Conheça os cuidados disponíveis no Instituto RP. Atendimento por marcação; valores e duração sob consulta.</p>
             </div>
             <div className={styles.serviceList}>
-              {visibleServices.slice(0, 8).map((service, index) => (
+              {visibleServices.map((service, index) => (
                 <article key={service.id} className={styles.serviceItem}>
                   <span className={styles.serviceIndex}>{String(index + 1).padStart(2, '0')}</span>
                   <div className={styles.serviceMain}>
                     <h3>{service.name}</h3>
-                    <p>{service.public_presentation || service.description || 'Um cuidado de beleza preparado e adaptado para si.'}</p>
+                    <p>{service.description}</p>
                   </div>
                   <div className={styles.serviceMeta}>
-                    <span><Clock3 /> {service.duration_minutes} min</span>
+                    {service.duration_minutes && <span><Clock3 /> {service.duration_minutes} min</span>}
                     <b>{Number(service.price) > 0 ? formatPrice.format(Number(service.price)) : 'Sob consulta'}</b>
                   </div>
-                  <Link href={`/servicos/${serviceSlug(service.name)}`} className={styles.serviceLink} aria-label={`Ver ${service.name}`}><ChevronRight /></Link>
+                  <Link href={service.configured ? `/servicos/${serviceSlug(service.name)}` : '#contacto'} className={styles.serviceLink} aria-label={`Consultar ${service.name}`}><ChevronRight /></Link>
                 </article>
               ))}
             </div>
