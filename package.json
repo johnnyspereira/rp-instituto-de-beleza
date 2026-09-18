@@ -65,7 +65,7 @@
     "lucide-react": "^1.22.0",
     "mysql2": "^3.24.2",
     "next": "16.2.6",
-    "next-intl": "^4.13.1",
+    "next-intl": "^4.14.5",
     "nodemailer": "^9.0.5",
     "opus-recorder": "^8.0.5",
     "qrcode": "^1.5.4",
