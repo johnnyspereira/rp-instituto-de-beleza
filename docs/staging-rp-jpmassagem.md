@@ -4,6 +4,15 @@ O subdomínio `rp.jpmassagem.pt` é temporário. Esta instalação usa o reposit
 privado `johnnyspereira/rp-instituto-de-beleza` e uma base de dados própria do RP.
 Não reutilizar a base de dados, os segredos, os ficheiros ou a sessão WhatsApp da JP.
 
+## Arquitetura do WhatsApp
+
+O WhatsApp **não funciona dentro da hospedagem**. A sessão QR, o Chromium e o
+`whatsapp-web.js` são executados pelo `workers/whatsapp-bridge` num computador
+local. O cPanel aloja somente o site, o CRM, a API e a base MySQL. O worker local
+comunica com o CRM por HTTPS usando `WHATSAPP_WORKER_URL` e um segredo partilhado.
+Por isso, não instalar Puppeteer/Chromium no cPanel e não copiar a sessão WhatsApp
+do computador para o servidor.
+
 ## DNS e alojamento
 
 O subdomínio já está criado no cPanel da Domínios.pt, mas também precisa de um
