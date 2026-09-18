@@ -92,6 +92,16 @@ export async function registerOwner(input: {
        ) VALUES (?, ?, ?, ?, ?, 'owner', JSON_ARRAY(), JSON_OBJECT())`,
       [profileId, userId, accountId, fullName, email]
     );
+    await connection.execute(
+      `INSERT INTO public_site_settings
+       (account_id, slug, enabled, hero_title, hero_subtitle, hero_image_url,
+        plans, benefits, testimonials, faqs, primary_color, accent_color)
+       VALUES (?, ?, TRUE, ?, ?, ?, JSON_ARRAY(), JSON_ARRAY(),
+         JSON_ARRAY(), JSON_ARRAY(), '#9d7144', '#1c241f')`,
+      [accountId, `rp-${accountId}`, 'A sua beleza, com identidade.',
+        'Beleza, estética, unhas e pestanas na Quinta do Conde.',
+        '/rp/hero-beauty-studio-v1.webp']
+    );
   });
 
   return { id: userId, email, accountId };

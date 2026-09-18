@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { PublicBusinessPage } from './site/[slug]/page';
-import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { getDefaultPublicBusinessSlug, getPublicBusinessSite } from '@/lib/public-site/server';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,6 +19,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RootPage() {
   const slug = await getDefaultPublicBusinessSlug();
   // The domain root is the business website, never the legacy directory.
-  if (!slug) notFound();
+  if (!slug) return <main style={{ padding: '4rem', textAlign: 'center' }}>
+    <h1>RP Instituto de Beleza</h1>
+    <p>Estamos a preparar o nosso novo espaço online.</p>
+    <Link href="/install">Configurar a empresa</Link>
+  </main>;
   return <PublicBusinessPage params={Promise.resolve({ slug })} />;
 }
