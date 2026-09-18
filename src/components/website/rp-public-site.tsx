@@ -23,6 +23,7 @@ import { PublicLeadForm } from '@/components/website/public-lead-form';
 import { serviceSlug } from '@/lib/public-site/service-slug';
 import type { getPublicBusinessSite } from '@/lib/public-site/server';
 import styles from './rp-public-site.module.css';
+import { RpPriceList } from './rp-price-list';
 
 type Site = NonNullable<Awaited<ReturnType<typeof getPublicBusinessSite>>>;
 
@@ -170,6 +171,8 @@ export function RpPublicSite({ site }: { site: Site }) {
             </div>
           </section>
         )}
+
+        <RpPriceList />
 
         <section id="casa" className={styles.about}>
           <div className={styles.aboutImage}>

@@ -351,3 +351,5 @@ html[data-theme='ruby'] {
     font: inherit;
   }
 }
+
+.rp-prices{padding:85px max(24px,6vw);background:#fff8f4;color:#38272a}.rp-prices>h2{font:400 clamp(36px,5vw,60px)/1.05 Georgia,serif;margin:18px 0}.rp-prices>h3{font:400 30px Georgia,serif;margin:48px 0 20px}.rp-prices>p{max-width:900px;font-size:14px;line-height:1.8}.rp-price-scroll{overflow-x:auto}.rp-price-table{width:100%;border-collapse:collapse;font-size:14px}.rp-price-table th,.rp-price-table td{padding:15px 18px;border-bottom:1px solid #e6d3cc;text-align:left}.rp-price-table thead{background:#f3d8ce}.rp-price-table tbody th{font-weight:500}.rp-price-table td{white-space:nowrap}.rp-prices>a{display:inline-block;margin-top:24px;padding:15px 22px;background:#38272a;color:white;text-decoration:none;border-radius:4px}
