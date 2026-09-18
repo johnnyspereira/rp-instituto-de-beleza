@@ -1,0 +1,18 @@
+{
+  "name": "rp-instituto-whatsapp-bridge",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Local WhatsApp QR bridge for the self-hosted CRM",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node --use-system-ca server.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.34.7"
+  }
+}

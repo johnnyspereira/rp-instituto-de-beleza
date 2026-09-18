@@ -1,0 +1,7 @@
+{
+  "name": "rp-instituto-ollama-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": { "start": "node --use-system-ca server.cjs" },
+  "engines": { "node": ">=20" }
+}

@@ -1,0 +1,594 @@
+.public-site {
+  --site-radius: 1rem;
+  --site-surface: #f8fafc;
+  --site-shadow: 0 18px 45px rgb(15 23 42 / 8%);
+  background: white;
+}
+
+.public-site .site-button,
+.public-site .site-card,
+.public-site .site-header,
+.public-site img {
+  transition:
+    border-radius 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease,
+    background-color 250ms ease;
+}
+
+.public-site .site-card {
+  border-radius: var(--site-radius);
+}
+
+.public-site .site-button {
+  border-radius: calc(var(--site-radius) * 0.65);
+}
+
+.public-site .site-slider-shade {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--dark) 94%, transparent),
+    color-mix(in srgb, var(--dark) 76%, transparent) 42%,
+    color-mix(in srgb, var(--dark) 20%, transparent) 74%,
+    color-mix(in srgb, var(--dark) 35%, transparent)
+  );
+}
+
+.public-site .site-gallery figure,
+.public-site .site-gallery img {
+  border-radius: var(--site-radius);
+}
+
+/* Bem-estar: orgânico, suave e acolhedor. */
+.public-site[data-site-theme='wellness'] {
+  --site-radius: 1.75rem;
+  --site-surface: #f5f3ec;
+  background: #fffefa;
+  font-family: ui-rounded, 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-site[data-site-theme='wellness'] .site-header {
+  border-color: color-mix(in srgb, var(--brand) 20%, transparent);
+  background: rgb(255 254 250 / 88%);
+}
+
+.public-site[data-site-theme='wellness'] .site-hero {
+  background:
+    radial-gradient(
+      circle at 86% 12%,
+      color-mix(in srgb, var(--brand) 55%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      125deg,
+      var(--dark),
+      color-mix(in srgb, var(--dark) 82%, var(--brand))
+    );
+}
+
+.public-site[data-site-theme='wellness'] .site-hero img {
+  border-radius: 48% 48% 12% 48%;
+}
+
+.public-site[data-site-theme='wellness'] .site-about,
+.public-site[data-site-theme='wellness'] .site-contact,
+.public-site[data-site-theme='wellness'] .site-testimonials,
+.public-site[data-site-theme='wellness'] .site-card {
+  background-color: var(--site-surface);
+}
+
+.public-site[data-site-theme='wellness'] .site-card {
+  border-color: color-mix(in srgb, var(--brand) 15%, white);
+  box-shadow: 0 14px 40px rgb(36 53 43 / 6%);
+}
+
+/* A composição principal do tema wellness assume uma leitura editorial:
+   superfícies quentes, blocos com ar e chamadas de ação sempre visíveis. */
+.public-site[data-site-theme='wellness'] {
+  background:
+    radial-gradient(circle at 0 15%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 24rem),
+    #fffefa;
+}
+
+.public-site[data-site-theme='wellness'] .site-header {
+  position: sticky;
+  top: 0.75rem;
+  width: min(calc(100% - 2rem), 86rem);
+  margin-inline: auto;
+  border: 1px solid rgb(255 255 255 / 52%);
+  border-radius: 1.25rem;
+  box-shadow: 0 16px 45px rgb(28 44 37 / 12%);
+}
+
+.public-site[data-site-theme='wellness'] .site-header + main {
+  margin-top: -4.5rem;
+}
+
+.public-site[data-site-theme='wellness'] .site-hero {
+  width: min(calc(100% - 2rem), 90rem);
+  min-height: 760px;
+  margin: 0 auto 1rem;
+  border-radius: 0 0 2.5rem 2.5rem;
+  box-shadow: 0 30px 80px rgb(20 35 28 / 18%);
+}
+
+.public-site[data-site-theme='wellness'] .site-hero-inner {
+  min-height: 760px;
+  padding-top: 11rem;
+}
+
+.public-site[data-site-theme='wellness'] .site-hero-title {
+  max-width: 14ch;
+  font-size: clamp(3.25rem, 6.6vw, 6.5rem);
+  letter-spacing: -0.065em;
+}
+
+.public-site[data-site-theme='wellness'] .site-hero-availability {
+  box-shadow: inset 0 1px rgb(255 255 255 / 12%);
+}
+
+.public-site[data-site-theme='wellness'] .site-services {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+}
+
+.public-site[data-site-theme='wellness'] .site-service-card {
+  position: relative;
+  overflow: hidden;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: 0 16px 40px rgb(32 52 40 / 8%);
+}
+
+.public-site[data-site-theme='wellness'] .site-service-card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  content: '';
+  background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 25%, white));
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.public-site[data-site-theme='wellness'] .site-service-card:hover::before {
+  opacity: 1;
+}
+
+.public-site[data-site-theme='wellness'] .site-service-card img {
+  border-radius: 0;
+}
+
+.public-site[data-site-theme='wellness'] .site-about {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid color-mix(in srgb, var(--brand) 12%, white);
+}
+
+.public-site[data-site-theme='wellness'] .site-about::after {
+  position: absolute;
+  right: -8rem;
+  bottom: -12rem;
+  width: 28rem;
+  height: 28rem;
+  border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent);
+  border-radius: 999px;
+  content: '';
+}
+
+.public-site[data-site-theme='wellness'] .site-team {
+  background:
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--brand) 30%, transparent), transparent 30rem),
+    var(--dark);
+}
+
+.public-site[data-site-theme='wellness'] .site-team-card {
+  background: rgb(255 255 255 / 7%);
+  backdrop-filter: blur(12px);
+}
+
+.public-site[data-site-theme='wellness'] .site-contact {
+  border-top: 1px solid color-mix(in srgb, var(--brand) 14%, white);
+}
+
+.public-site[data-site-theme='wellness'] .site-footer {
+  margin: 0 1rem 1rem;
+  border-radius: 1.75rem;
+}
+
+/* Clínico: preciso, luminoso e confiável. */
+.public-site[data-site-theme='clinic'] {
+  --site-radius: 0.75rem;
+  --site-surface: #f2f9fa;
+  background: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-site[data-site-theme='clinic'] .site-header {
+  border-bottom: 3px solid color-mix(in srgb, var(--brand) 18%, white);
+  background: rgb(255 255 255 / 96%);
+}
+
+.public-site[data-site-theme='clinic'] .site-hero {
+  background: linear-gradient(
+    110deg,
+    var(--dark) 0 58%,
+    color-mix(in srgb, var(--brand) 82%, white) 58% 100%
+  );
+}
+
+.public-site[data-site-theme='clinic'] .site-hero-title {
+  letter-spacing: -0.04em;
+}
+
+.public-site[data-site-theme='clinic'] .site-card {
+  border-color: #d9ecee;
+  box-shadow: 0 8px 22px rgb(18 48 71 / 6%);
+}
+
+.public-site[data-site-theme='clinic'] .site-about,
+.public-site[data-site-theme='clinic'] .site-contact,
+.public-site[data-site-theme='clinic'] .site-testimonials {
+  background: var(--site-surface);
+}
+
+/* Premium: editorial, sóbrio e exclusivo. */
+.public-site[data-site-theme='luxury'] {
+  --site-radius: 0.15rem;
+  --site-surface: #f4efe5;
+  background: #fbf8f1;
+  color: #171510;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.public-site[data-site-theme='luxury'] .site-header {
+  border-color: #d8c7a8;
+  background: rgb(251 248 241 / 94%);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.public-site[data-site-theme='luxury'] .site-hero {
+  background: #171510;
+}
+
+.public-site[data-site-theme='luxury'] .site-slider-shade {
+  background: linear-gradient(
+    90deg,
+    rgb(23 21 16 / 96%),
+    rgb(23 21 16 / 65%) 50%,
+    rgb(23 21 16 / 12%)
+  );
+}
+
+.public-site[data-site-theme='luxury'] .site-hero-inner {
+  min-height: 720px;
+}
+
+.public-site[data-site-theme='luxury'] .site-hero-title {
+  max-width: 12ch;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+.public-site[data-site-theme='luxury'] .site-button,
+.public-site[data-site-theme='luxury'] .site-card p,
+.public-site[data-site-theme='luxury'] nav {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-site[data-site-theme='luxury'] .site-card {
+  border-color: #d8c7a8;
+  box-shadow: none;
+}
+
+.public-site[data-site-theme='luxury'] .site-about,
+.public-site[data-site-theme='luxury'] .site-contact,
+.public-site[data-site-theme='luxury'] .site-testimonials {
+  background: var(--site-surface);
+}
+
+/* Corporativo: estrutura forte e leitura objetiva. */
+.public-site[data-site-theme='corporate'] {
+  --site-radius: 0.5rem;
+  --site-surface: #f3f6fb;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-site[data-site-theme='corporate'] .site-header {
+  background: rgb(255 255 255 / 97%);
+  box-shadow: 0 2px 12px rgb(15 31 61 / 7%);
+}
+
+.public-site[data-site-theme='corporate'] .site-hero {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.8%,
+      rgb(255 255 255 / 8%) 50%,
+      transparent 50.2%
+    ),
+    linear-gradient(
+      135deg,
+      var(--dark),
+      color-mix(in srgb, var(--dark) 72%, var(--brand))
+    );
+}
+
+.public-site[data-site-theme='corporate'] .site-hero-title {
+  letter-spacing: -0.045em;
+}
+
+.public-site[data-site-theme='corporate'] .site-card {
+  border-top: 4px solid var(--brand);
+  box-shadow: 0 12px 30px rgb(15 31 61 / 7%);
+}
+
+.public-site[data-site-theme='corporate'] .site-about,
+.public-site[data-site-theme='corporate'] .site-contact,
+.public-site[data-site-theme='corporate'] .site-testimonials {
+  background: var(--site-surface);
+}
+
+/* Vibrante: grande, colorido e com energia. */
+.public-site[data-site-theme='vibrant'] {
+  --site-radius: 1.5rem;
+  --site-surface: #fff1f8;
+  font-family:
+    ui-rounded, 'Arial Rounded MT Bold', ui-sans-serif, system-ui, sans-serif;
+}
+
+.public-site[data-site-theme='vibrant'] .site-header {
+  border: 0;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 8px 35px rgb(49 20 95 / 10%);
+}
+
+.public-site[data-site-theme='vibrant'] .site-hero {
+  background: linear-gradient(
+    125deg,
+    var(--dark),
+    var(--brand) 54%,
+    #0ea5e9 135%
+  );
+}
+
+.public-site[data-site-theme='vibrant'] .site-hero-title {
+  max-width: 10ch;
+  font-size: clamp(3.25rem, 7vw, 6.8rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.public-site[data-site-theme='vibrant'] .site-slide {
+  filter: saturate(1.2) contrast(1.05);
+}
+
+.public-site[data-site-theme='vibrant'] .site-button {
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgb(49 20 95 / 18%);
+}
+
+.public-site[data-site-theme='vibrant'] .site-card {
+  border: 0;
+  box-shadow: 0 18px 45px rgb(49 20 95 / 10%);
+}
+
+.public-site[data-site-theme='vibrant'] .site-about,
+.public-site[data-site-theme='vibrant'] .site-contact,
+.public-site[data-site-theme='vibrant'] .site-testimonials {
+  background: var(--site-surface);
+}
+
+/* Minimalista: preto e branco, espaço e nenhuma decoração supérflua. */
+.public-site[data-site-theme='minimal'] {
+  --site-radius: 0;
+  --site-surface: #f5f5f5;
+  background: #fff;
+  color: #111;
+  font-family: Helvetica, Arial, ui-sans-serif, sans-serif;
+}
+
+.public-site[data-site-theme='minimal'] .site-header {
+  border-color: #111;
+  background: rgb(255 255 255 / 96%);
+}
+
+.public-site[data-site-theme='minimal'] .site-hero {
+  border-bottom: 1px solid #111;
+  background: #111;
+  color: #fff;
+}
+
+.public-site[data-site-theme='minimal'] .site-slider-shade {
+  background: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 93%),
+    rgb(0 0 0 / 55%) 52%,
+    rgb(0 0 0 / 8%)
+  );
+}
+
+.public-site[data-site-theme='minimal'] .site-hero-title {
+  max-width: 11ch;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+}
+
+.public-site[data-site-theme='minimal'] .site-button {
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+  box-shadow: none;
+}
+
+.public-site[data-site-theme='minimal'] .site-button-ghost {
+  border-color: #fff;
+  background: transparent;
+  color: #fff;
+}
+
+.public-site[data-site-theme='minimal'] .site-card {
+  border: 1px solid #111;
+  background: #fff;
+  box-shadow: none;
+}
+
+.public-site[data-site-theme='minimal'] .site-about,
+.public-site[data-site-theme='minimal'] .site-contact,
+.public-site[data-site-theme='minimal'] .site-testimonials {
+  border-block: 1px solid #111;
+  background: var(--site-surface);
+}
+
+@media (max-width: 1023px) {
+  .public-site[data-site-theme='clinic'] .site-hero {
+    background: linear-gradient(
+      145deg,
+      var(--dark),
+      color-mix(in srgb, var(--dark) 65%, var(--brand))
+    );
+  }
+
+  .public-site[data-site-theme='luxury'] .site-hero-inner {
+    min-height: 620px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-site *,
+  .public-site *::before,
+  .public-site *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Sistema visual comum: garante que o redesenho não depende do tema ativo. */
+.public-site .site-header {
+  top: 0.75rem;
+  width: min(calc(100% - 2rem), 86rem);
+  margin-inline: auto;
+  border: 1px solid rgb(226 232 240 / 80%);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 36px rgb(15 23 42 / 10%);
+}
+
+.public-site .site-header > div {
+  min-height: 4.5rem;
+}
+
+.public-site .site-header nav a {
+  position: relative;
+  font-weight: 500;
+}
+
+.public-site .site-header nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.55rem;
+  left: 0;
+  height: 2px;
+  content: '';
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.public-site .site-header nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.public-site main {
+  overflow: hidden;
+}
+
+.public-site .site-hero {
+  width: min(calc(100% - 2rem), 90rem);
+  min-height: 720px;
+  margin: -4.5rem auto 1.25rem;
+  border-radius: 0 0 2.25rem 2.25rem;
+  box-shadow: 0 32px 80px rgb(15 23 42 / 16%);
+}
+
+.public-site .site-hero-inner {
+  min-height: 720px;
+  padding-top: 11rem;
+}
+
+.public-site .site-hero-title {
+  max-width: 13ch;
+  letter-spacing: -0.06em;
+}
+
+.public-site[data-site-theme='wellness'] .site-header + main {
+  margin-top: 0;
+}
+
+.public-site .site-card {
+  background: rgb(255 255 255 / 88%);
+}
+
+.public-site .site-card:hover {
+  box-shadow: 0 22px 48px rgb(15 23 42 / 13%);
+}
+
+.public-site .site-gallery {
+  padding: 0.75rem;
+  border-radius: calc(var(--site-radius) + 0.75rem);
+  background: color-mix(in srgb, var(--brand) 8%, white);
+}
+
+.public-site .site-gallery figure {
+  box-shadow: 0 12px 28px rgb(15 23 42 / 12%);
+}
+
+.public-site .site-team-card {
+  overflow: hidden;
+}
+
+.public-site .site-team-card img {
+  transition: transform 450ms ease;
+}
+
+.public-site .site-team-card:hover img {
+  transform: scale(1.04);
+}
+
+.public-site .site-contact {
+  position: relative;
+}
+
+.public-site .site-contact::before {
+  position: absolute;
+  top: 0;
+  right: 8%;
+  width: 12rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  content: '';
+  background: var(--brand);
+}
+
+@media (max-width: 767px) {
+  .public-site .site-header {
+    width: calc(100% - 1rem);
+    border-radius: 1rem;
+  }
+  .public-site .site-hero {
+    width: 100%;
+    min-height: 680px;
+    margin-top: -4.5rem;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+  .public-site .site-hero-inner {
+    min-height: 680px;
+    padding-top: 9rem;
+  }
+  .public-site .site-hero-title { font-size: clamp(2.7rem, 12vw, 4.25rem); }
+}

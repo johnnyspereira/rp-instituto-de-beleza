@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "AJ Massagem CRM para WhatsApp Web",
+  "description": "Painel CRM dentro do WhatsApp Web para identificar conversas e consultar clientes.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "AJ CRM",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content-script.js"],
+      "css": ["content-styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

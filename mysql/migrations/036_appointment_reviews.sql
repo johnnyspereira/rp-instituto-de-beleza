@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS clinic_appointment_reviews (
+  id CHAR(36) NOT NULL,
+  account_id CHAR(36) NOT NULL,
+  appointment_id CHAR(36) NOT NULL,
+  contact_id CHAR(36) NOT NULL,
+  public_token CHAR(36) NOT NULL,
+  rating TINYINT NULL,
+  comment TEXT NULL,
+  consent_to_publish BOOLEAN NOT NULL DEFAULT FALSE,
+  published_at DATETIME(3) NULL,
+  sent_at DATETIME(3) NULL,
+  submitted_at DATETIME(3) NULL,
+  created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (id),
+  UNIQUE KEY clinic_reviews_appointment_unique (appointment_id),
+  UNIQUE KEY clinic_reviews_token_unique (public_token),
+  KEY clinic_reviews_public_idx (account_id,published_at),
+  CONSTRAINT clinic_reviews_appointment_fk FOREIGN KEY (appointment_id) REFERENCES clinic_appointments(id) ON DELETE CASCADE,
+  CONSTRAINT clinic_reviews_contact_fk FOREIGN KEY (contact_id) REFERENCES contacts(id) ON DELETE CASCADE,
+  CONSTRAINT clinic_reviews_rating_check CHECK (rating IS NULL OR rating BETWEEN 1 AND 5)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

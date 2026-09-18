@@ -1,0 +1,124 @@
+.layoutGuard [data-public-section='plans'] {
+  background: #fffdf8;
+  padding-left: max(24px, calc((100vw - 1132px) / 2));
+  padding-right: max(24px, calc((100vw - 1132px) / 2));
+}
+
+.layoutGuard [data-public-section='plans'] > h2 {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  margin: 6px 0 28px;
+}
+
+.layoutGuard [data-public-section='plans'] > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.layoutGuard [data-public-section='plans'] article {
+  display: flex;
+  min-height: 360px;
+  flex-direction: column;
+  border: 1px solid #e1dbd0;
+  border-radius: 16px;
+  background: #fff;
+  padding: 26px;
+}
+
+.layoutGuard [data-public-section='plans'] article:nth-child(2) {
+  border-color: #496c45;
+  box-shadow: 0 12px 30px rgb(52 75 50 / 12%);
+}
+
+.layoutGuard [data-public-section='plans'] article > p {
+  margin: 0;
+  color: #526258;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.layoutGuard [data-public-section='plans'] strong {
+  margin: 14px 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 31px;
+  line-height: 1.05;
+}
+
+.layoutGuard [data-public-section='plans'] article > span {
+  color: #526258;
+  font-size: 14px;
+}
+
+.layoutGuard [data-public-section='plans'] ul {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.layoutGuard [data-public-section='plans'] li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #334236;
+  font-size: 13px;
+}
+
+.layoutGuard [data-public-section='plans'] li svg {
+  width: 16px;
+  color: #496c45;
+}
+
+.layoutGuard [data-public-section='plans'] a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  color: #496c45;
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.layoutGuard [data-public-section='testimonials'] {
+  background: #f4f1eb;
+  padding-left: max(24px, calc((100vw - 1132px) / 2));
+  padding-right: max(24px, calc((100vw - 1132px) / 2));
+}
+
+.layoutGuard [data-public-section='testimonials'] > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.layoutGuard [data-public-section='testimonials'] blockquote {
+  margin: 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.layoutGuard [data-public-section='testimonials'] > div:last-child > article:only-child {
+  min-height: 190px;
+}
+
+.layoutGuard [data-public-section='contact'] > div:first-child,
+.layoutGuard [data-public-section='contact'] > div:first-child p {
+  color: #526258;
+}
+
+.layoutGuard [data-public-section='contact'] > div:first-child h2 {
+  color: #1d2920;
+}
+
+@media (max-width: 560px) {
+  .layoutGuard [data-public-section='plans'] article {
+    min-height: 0;
+    padding: 22px;
+  }
+}
