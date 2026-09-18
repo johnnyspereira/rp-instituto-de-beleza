@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
-    "@aws-sdk/client-s3": "^3.1087.0",
+    "@aws-sdk/client-s3": "^3.1132.0",
     "@base-ui/react": "^1.6.0",
     "@dagrejs/dagre": "^3.0.0",
     "@dnd-kit/core": "^6.3.1",
