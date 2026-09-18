@@ -68,10 +68,11 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    - clicar em **Run npm install** e esperar que termine sem erros;
    - clicar em **Run JS Script**, escolher `deploy:cpanel` e executar;
    - confirmar no resultado as mensagens `Applying MySQL migrations`,
-     `Building the Next.js application` e `completed successfully`;
+     `Installing the prebuilt Next.js application` e `completed successfully`;
    - clicar em **Restart**.
 
-   O script `deploy:cpanel` executa as migrações e o build na ordem correta. Se
+   O script `deploy:cpanel` executa as migrações e instala o build preparado
+   fora do alojamento, evitando os limites de memória do cPanel. Se
    o painel não mostrar **Run JS Script**, usar **Git Version Control > Manage >
    Pull or Deploy** com uma configuração `.cpanel.yml`, ou pedir à Domínios.pt
    que habilite a execução de scripts Node.js para a conta.
@@ -91,7 +92,7 @@ partilhar o endereço. A lista completa de verificações está em
 
 Quando o domínio oficial do RP estiver definido, apontá-lo à **mesma instalação**
 e à **mesma base RP**, emitir o certificado HTTPS e atualizar as cinco variáveis de
-URL/host acima. Recompilar (`npm run build:cpanel`) porque as variáveis
+URL/host acima. Gerar novamente o pacote (`npm run build:cpanel:package`) porque as variáveis
 `NEXT_PUBLIC_*` entram no build, reiniciar e testar login, links de email,
 convites, callbacks e webhooks. Atualizar também URLs registadas nos serviços
 externos e, só após validar o novo domínio, redirecionar o subdomínio de teste.

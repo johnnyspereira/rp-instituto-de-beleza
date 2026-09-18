@@ -31,6 +31,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:cpanel": "next build --webpack",
+    "build:cpanel:package": "node scripts/create-cpanel-build.mjs",
     "deploy:cpanel": "node scripts/cpanel-deploy.mjs",
     "start": "next start",
     "start:cpanel": "node server.cjs",
