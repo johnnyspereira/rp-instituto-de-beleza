@@ -52,6 +52,7 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
 
 5. Sem acesso ao Terminal, abrir a aplicação em **Setup Node.js App**. Confirmar
    primeiro que `NPM_CONFIG_PRODUCTION=false` está guardada nas variáveis:
+   - confirmar antes que `rp.jpmassagem.pt` já resolve no DNS e abre no browser;
    - clicar em **Run npm install** e esperar que termine sem erros;
    - clicar em **Run JS Script**, escolher `deploy:cpanel` e executar;
    - confirmar no resultado as mensagens `Applying MySQL migrations`,

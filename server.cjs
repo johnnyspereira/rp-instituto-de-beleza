@@ -1,15 +1,24 @@
 const { createServer } = require('node:http');
 const { spawn } = require('node:child_process');
 const path = require('node:path');
-const next = require('next');
+
+let next;
+try {
+  next = require('next');
+} catch (error) {
+  const nextIsNotInstalled =
+    error?.code === 'MODULE_NOT_FOUND' &&
+    String(error?.message || '').includes("'next'");
+  if (!nextIsNotInstalled) throw error;
+}
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = process.env.HOST || '0.0.0.0';
 const port = Number.parseInt(process.env.PORT || '3000', 10);
-const app = next({ dev, hostname, port });
-const handle = app.getRequestHandler();
+const app = next ? next({ dev, hostname, port }) : null;
+const handle = app?.getRequestHandler();
 
 let server;
 let financeReminderTimer;
@@ -107,6 +116,25 @@ function startFinanceReminderScheduler() {
 }
 
 async function start() {
+  // CloudLinux's "Run npm install" checks that the registered URL responds
+  // before it installs node_modules. A fresh clone does not have Next.js yet,
+  // so keep Passenger healthy long enough for that first installation.
+  if (!app || !handle) {
+    server = createServer((_request, response) => {
+      response.statusCode = 200;
+      response.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      response.end(
+        'RP Instituto de Beleza CRM: instalação das dependências pendente.'
+      );
+    });
+    server.listen(port, hostname, () => {
+      console.log(
+        `CRM dependency-installation placeholder running on http://${hostname}:${port}`
+      );
+    });
+    return;
+  }
+
   // cPanel's Passenger process must remain lightweight. Builds and schema
   // changes belong to the deployment hook, not every application restart.
   // The explicit *_ON_START flags remain available for controlled recovery.
@@ -135,7 +163,7 @@ async function shutdown(signal) {
 
   server.close(async () => {
     try {
-      await app.close();
+      await app?.close();
     } finally {
       process.exit(0);
     }
