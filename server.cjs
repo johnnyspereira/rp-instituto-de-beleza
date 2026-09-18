@@ -1,5 +1,6 @@
 const { createServer } = require('node:http');
 const { spawn } = require('node:child_process');
+const fs = require('node:fs');
 const path = require('node:path');
 
 let next;
@@ -17,7 +18,11 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'production';
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = process.env.HOST || '0.0.0.0';
 const port = Number.parseInt(process.env.PORT || '3000', 10);
-const app = next ? next({ dev, hostname, port }) : null;
+const productionBuildExists = fs.existsSync(
+  path.join(process.cwd(), '.next', 'BUILD_ID')
+);
+const runtimeIsReady = Boolean(next) && (dev || productionBuildExists);
+const app = runtimeIsReady ? next({ dev, hostname, port }) : null;
 const handle = app?.getRequestHandler();
 
 let server;
@@ -116,15 +121,16 @@ function startFinanceReminderScheduler() {
 }
 
 async function start() {
-  // CloudLinux's "Run npm install" checks that the registered URL responds
-  // before it installs node_modules. A fresh clone does not have Next.js yet,
-  // so keep Passenger healthy long enough for that first installation.
+  // CloudLinux checks the registered URL before and after "Run npm install".
+  // A fresh clone has neither node_modules nor a production build, and after
+  // npm install it has Next.js but still no .next/BUILD_ID. Keep Passenger
+  // healthy throughout both phases so the panel can complete installation.
   if (!app || !handle) {
     server = createServer((_request, response) => {
       response.statusCode = 200;
       response.setHeader('Content-Type', 'text/plain; charset=utf-8');
       response.end(
-        'RP Instituto de Beleza CRM: instalação das dependências pendente.'
+        'RP Instituto de Beleza CRM: instalação ou build pendente.'
       );
     });
     server.listen(port, hostname, () => {
