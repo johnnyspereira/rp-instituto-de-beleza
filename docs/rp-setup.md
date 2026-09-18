@@ -18,4 +18,6 @@ Os repositórios são independentes. Uma alteração feita no JP não aparece no
 
 Quando os dois projetos estiverem estáveis, extrair as partes comuns para um pacote ou repositório base. Nessa fase, uma atualização do código comum pode abrir automaticamente uma proposta de atualização para o RP, mantendo a aprovação de alterações específicas da clínica.
 
-O repositório RP ainda não tem remoto GitHub nem publicação configurados.
+O repositório RP está em `johnnyspereira/rp-instituto-de-beleza` (privado).
+Para a instalação temporária em `rp.jpmassagem.pt`, consulte
+[`staging-rp-jpmassagem.md`](staging-rp-jpmassagem.md).
