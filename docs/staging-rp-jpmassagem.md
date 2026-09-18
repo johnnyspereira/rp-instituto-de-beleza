@@ -15,8 +15,9 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
 
 ## Aplicação e base de dados
 
-1. Criar no cPanel uma base MySQL/MariaDB e um utilizador exclusivos do RP,
-   concedendo os privilégios necessários para as migrações.
+1. No cPanel, associar o utilizador `jpmassag_rp` à base `jpmassag_rp` e
+   conceder **Todos os privilégios** para executar as migrações. Definir uma
+   senha nova para este utilizador antes de publicar a aplicação.
 2. Disponibilizar o repositório privado em
    `/home/jpmassag/repositories/rp-instituto-de-beleza`. Se usar o Git Version
    Control do cPanel, configurar uma chave de deploy **só de leitura** no GitHub.
@@ -30,8 +31,8 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    NODE_ENV=production
    DB_HOST=localhost
    DB_PORT=3306
-   DB_NAME=<base_exclusiva_do_rp>
-   DB_USER=<utilizador_exclusivo_do_rp>
+   DB_NAME=jpmassag_rp
+   DB_USER=jpmassag_rp
    DB_PASSWORD=<senha_nova>
    AUTH_SECRET=<64_caracteres_hex_aleatorios>
    ENCRYPTION_KEY=<64_caracteres_hex_aleatorios>
