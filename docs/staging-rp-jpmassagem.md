@@ -34,6 +34,7 @@ consulta DNS de `jpmassagem.pt` como IP de origem. Confirmar que
    NODE_ENV=production
    NPM_CONFIG_INCLUDE=dev
    NPM_CONFIG_LEGACY_PEER_DEPS=true
+   PUPPETEER_SKIP_DOWNLOAD=true
    DB_HOST=localhost
    DB_PORT=3306
    DB_NAME=jpmassag_rp

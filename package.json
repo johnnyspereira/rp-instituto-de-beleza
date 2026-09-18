@@ -105,5 +105,13 @@
     "hono": "^4.12.25",
     "js-yaml": "^4.2.0",
     "@babel/core": "^7.29.6"
+  },
+  "allowScripts": {
+    "@parcel/watcher": true,
+    "@swc/core": true,
+    "core-js": true,
+    "puppeteer": false,
+    "sharp": true,
+    "unrs-resolver": true
   }
 }
